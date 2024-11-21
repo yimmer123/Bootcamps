@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Bootcamp } from 'src/bootcamps/entities/bootcamp.entity';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 
 @Entity()
@@ -23,6 +24,11 @@ export class Course {
 
     @Column({ type: "timestamp", default: () => 'CURRENT_TIMESTAMP', name: "created_at" })
     createsAt: Date
+
+    //El Bootcamp al que pertence el course
+    //El inverso de la relacion 
+    @ManyToOne(()=> Bootcamp, (bootcamp: Bootcamp)=> bootcamp.Cursos ) 
+    bootcamp: Bootcamp
 
     
 }

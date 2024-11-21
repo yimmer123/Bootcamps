@@ -1,4 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn} from "typeorm";
+import { Review } from 'src/reviews/entities/review.entity';
+import { Bootcamp } from "src/bootcamps/entities/bootcamp.entity";
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany} from "typeorm";
 
 
 
@@ -19,4 +21,10 @@ export class User {
 
     @Column ({type: "varchar", nullable: false})
     password: string
+
+    @OneToMany(()=> Bootcamp, (bootcamp: Bootcamp)=> bootcamp.User)
+    Bootcamp: Bootcamp 
+
+    @OneToMany(()=> Review, (review: Review)=> review.User)
+    Review: Review
 }
